@@ -208,10 +208,12 @@ void loop() {
 				readCommand(client);
 			}
 			//serial
+                        /*
 			else if (Serial.available()) {
 				//get serial buffer and push
 				readSerial(client);
 			}
+                        */
 		}
 		//
 		client.stop();
