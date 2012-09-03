@@ -59,7 +59,7 @@ class customEngine(engineManager):
 if __name__=="__main__":
 	#
 	#status 
-	e=customEngine("192.168.0.1")
+	e=customEngine("192.168.1.177")
 	
 	#send command
 	#time.sleep(3)
