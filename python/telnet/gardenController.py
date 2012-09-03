@@ -45,7 +45,6 @@ class customEngine(engineManager):
 			#append 
 			self.cmd=[
 				"*\n",
-				"#>D0\n",
 				"#>E0\n",
 				"#>F0\n",
 				"#>G0\n",
@@ -60,9 +59,6 @@ class customEngine(engineManager):
 	def pumpsOn(self,on=10,off=2):
 		#pass all to a timer
 		cmd=[
-			["#>D1\n",on],
-			["#>D0\n",off],
-
 			["#>E1\n",on],
 			["#>E0\n",off],
 
@@ -80,7 +76,7 @@ class customEngine(engineManager):
 
 ########################################
 if __name__=="__main__":
-	e=customEngine("192.168.0.1")
+	e=customEngine("192.168.1.177")
 	#send command
 	time.sleep(2)
 	while 1:
