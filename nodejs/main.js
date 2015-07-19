@@ -7,7 +7,7 @@ var telnet = require('another-telnet-client'),
 	  irs: '\n',
 	  ors: '\n',
 	  shellPrompt: null,
-	  timeout: 15000,
+	  timeout: 10000000,
 	  // removeEcho: 4
 	}
 
