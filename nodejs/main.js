@@ -1,11 +1,13 @@
-var telnet = require('telnet-client'),
+var telnet = require('another-telnet-client'),
 	queueFactory = require('./queue/queue'),
 	connection = new telnet(),
 	params = {
-	  host: '127.0.0.1',
+	  host: '192.168.1.46',
 	  port: 23,
-	  shellPrompt: '',
-	  timeout: 1500,
+	  irs: '\n',
+	  ors: '\n',
+	  shellPrompt: null,
+	  timeout: 15000,
 	  // removeEcho: 4
 	}
 
@@ -16,8 +18,8 @@ var telnet = require('telnet-client'),
  * [onT description]
  * @type {Number}
  */
-var onT = 10000,
-	offT = 1000,
+var onT = 300000,
+	offT = 3000,
 	tasks = [
 		{cmd: 'D0', t: offT},
 		{cmd: 'E0', t: offT},
@@ -45,12 +47,17 @@ var onT = 10000,
  * @param  {queueFactory} prompt) {             queue [description]
  * @return {[type]}               [description]
  */
-connection.on('ready', function(prompt) {
+connection.on('connect', function(prompt) {
 	console.log('Connected, sending commands');
 	queue = new queueFactory(tasks, connection);
 	queue.exec();
+});
+connection.on('timeout', function() {
+  console.log('Timeout');
 });
 connection.on('close', function() {
   console.log('Closed');
 });
 connection.connect(params);
+
+console.log('Running...');
